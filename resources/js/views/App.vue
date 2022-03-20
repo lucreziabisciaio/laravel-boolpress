@@ -2,6 +2,8 @@
   <div>
     <TheNavbar></TheNavbar>
 
+    <ExampleComponent></ExampleComponent>
+
     <div class="container py-4">
       <h1>Benvenuto in vue.js</h1>
 
