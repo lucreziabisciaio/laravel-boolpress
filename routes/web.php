@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,8 +26,14 @@ Route::middleware('auth')
     ->name('admin.')
     ->group(function () {
         Route::get('/', 'HomeController@index')->name('home');
+
+        Route::resource("posts", "PostController");
+        Route::resource("users", "UserController");
     });
 
 Route::get('{any}', function(){
     return view('home');
 })->where('any', '.*');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
