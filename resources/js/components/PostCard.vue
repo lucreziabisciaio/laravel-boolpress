@@ -6,7 +6,7 @@
         <h5 class="card-title">{{ post.title }}</h5>
         <p class="card-text" v-html="post.content"></p>
 
-        <em>Autore: {{ post.user.name }}; Data: {{ post.created_at }}</em><br />
+        <em>Autore: {{ post.user.name }}; Data: {{ formatDate(post.created_at) }}</em><br />
         <strong v-if="post.category">{{ post.category.code }}</strong>
       </div>
 
@@ -18,6 +18,8 @@
 </template>
 
 <script>
+import dayjs from "dayjs";
+
 export default {
   props: {
     post: Object,
@@ -28,6 +30,9 @@ export default {
         post.coverImg ??
         "https://www.logistec.com/wp-content/uploads/2017/12/placeholder.png"
       );
+    },
+    formatDate(date) {
+      return dayjs(date).format('DD/MM/YYYY HH:mm')
     },
   },
 };
