@@ -50,6 +50,10 @@ class PostController extends Controller
 
         // $post->load(["tags", "user", "category"]);
 
+        if (!$post) {
+            abort(404);
+        }
+
         return response()->json($post);
     }
 }
