@@ -14,7 +14,7 @@ class AddColumnToPostsTable extends Migration
     public function up()
     {
         Schema::table('posts', function (Blueprint $table) {
-            $table->string("coverImg")->nullable();
+            $table->string("cover")->nullable();
         });
     }
 
@@ -26,7 +26,7 @@ class AddColumnToPostsTable extends Migration
     public function down()
     {
         Schema::table('posts', function (Blueprint $table) {
-            $table->dropColumn("coverImg");
+            $table->dropColumn("cover");
         });
     }
 }

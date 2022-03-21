@@ -26,13 +26,13 @@
 
                             <div class="ms-auto">
                                 <a class="me-3" href="{{ route('admin.posts.show', $post->slug) }}"
-                                    title="Visualizza">Visualizza<i class="fa-solid fa-eye"></i></a>
+                                    title="Visualizza"><i class="fa-solid fa-eye"></i></a>
                                 <a class="text-dark" href="{{ route('admin.posts.edit', $post->slug) }}"
-                                    title="Modifica">Modifica<i class="fa-solid fa-edit"></i></a>
-                                {{-- @include('partials.deleteBtn', [
+                                    title="Modifica"><i class="fa-solid fa-edit"></i></a>
+                                @include('partials.deleteBtn', [
                                 'id' => $post->id,
                                 'route' => 'admin.posts.destroy',
-                                ]) --}}
+                                ])
                             </div>
                         </li>
                         @endforeach

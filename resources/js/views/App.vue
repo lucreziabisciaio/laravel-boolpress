@@ -2,12 +2,10 @@
   <div>
     <TheNavbar></TheNavbar>
 
-    <ExampleComponent></ExampleComponent>
-
     <div class="container py-4">
-      <h1>Benvenuto in vue.js</h1>
+      <h1>Benvenuto in vue.js 1</h1>
 
-      <div>
+      <!-- <div>
         <button class="btn btn-primary" @click="fetchPosts">refresh</button>
       </div>
 
@@ -40,7 +38,7 @@
             >
           </li>
         </ul>
-      </nav>
+      </nav> -->
     </div> 
 
     <TheFooter></TheFooter>
@@ -48,41 +46,40 @@
 </template>
 
 <script>
-import ExampleComponentVue from "../components/ExampleComponent.vue";
 import TheNavbar from "../components/TheNavbar.vue";
 import TheFooter from "../components/TheFooter.vue";
-import PostCard from "../components/PostCard.vue";
-import axios from "axios";
+// import PostCard from "../components/PostCard.vue";
+// import axios from "axios";
 export default {
-  components: { 
-    ExampleComponentVue,
+  components: {
     TheNavbar,
     TheFooter,
-    PostCard },
-
-  data() {
-    return {
-      posts: [],
-      pagination: {},
-    };
-  },
-  methods: {
-    async fetchPosts(page = 1) {
-      if (page < 1) {
-        page = 1;
-      }
-      if (page > this.pagination.last_page) {
-        page = this.pagination.last_page;
-      }
-
-      const resp = await axios.get("http://127.0.0.1:8000/api/posts?page=" + page);
-      this.pagination = resp.data;
-      this.posts = resp.data.data;
+    // PostCard,
     },
-  },
-  mounted() {
-    this.fetchPosts();
-  },
+
+  // data() {
+  //   return {
+  //     posts: [],
+  //     pagination: {},
+  //   };
+  // },
+  // methods: {
+  //   async fetchPosts(page = 1) {
+  //     if (page < 1) {
+  //       page = 1;
+  //     }
+  //     if (page > this.pagination.last_page) {
+  //       page = this.pagination.last_page;
+  //     }
+
+  //     const resp = await axios.get("http://127.0.0.1:8000/api/posts?page=" + page);
+  //     this.pagination = resp.data;
+  //     this.posts = resp.data.data;
+  //   },
+  // },
+  // mounted() {
+  //   this.fetchPosts();
+  // },
 };
 </script>
 
