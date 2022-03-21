@@ -42,11 +42,13 @@ class PostController extends Controller
         return response()->json($newPost);
     }
 
-    public function show($id)
+    public function show($slug)
     {
-        $post = Post::findOrFail($id);
+        $post = Post::where("slug", $slug)
+            ->with(["tags", "user", "category"])
+            ->first();
 
-        $post->load(["tags", "user", "category"]);
+        // $post->load(["tags", "user", "category"]);
 
         return response()->json($post);
     }

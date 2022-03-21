@@ -11,7 +11,7 @@
       </div>
 
       <div class="card-footer">
-        <a href="#">Dettagli</a>
+        <router-link :to="{ name:'posts.show', params: { post: post.slug } }">Dettagli</router-link>
       </div>
     </div>
   </div>
@@ -27,8 +27,7 @@ export default {
   methods: {
     getPostCover(post) {
       return (
-        post.coverImg ??
-        "https://www.logistec.com/wp-content/uploads/2017/12/placeholder.png"
+        post.cover ?? "https://www.logistec.com/wp-content/uploads/2017/12/placeholder.png"
       );
     },
     formatDate(date) {
