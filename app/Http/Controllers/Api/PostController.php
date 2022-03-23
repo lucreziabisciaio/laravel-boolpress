@@ -17,6 +17,14 @@ class PostController extends Controller
 
         $posts->load("user", "category");
 
+        $posts->each(function($post){
+            if($post->cover) {
+                $post->cover = asset('storage/' . $post->cover);
+            } else {
+                $post->cover = "https://www.logistec.com/wp-content/uploads/2017/12/placeholder.png";
+            }
+        });
+
         return response()->json($posts);
     }
 

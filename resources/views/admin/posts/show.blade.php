@@ -15,6 +15,12 @@
 
                 <div class="card-body">
 
+                    @if ($post->cover)
+                        <img src="{{ asset('storage/' . $post->cover) }}" alt="" class="img-fluid">
+                    @else
+                        <img src="https://via.placeholder.com/1024x480" alt="" class="img-fluid">
+                    @endif
+
                     <p class="lead">
                         {!! $post->content !!}
                     </p>

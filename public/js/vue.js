@@ -1947,11 +1947,11 @@ __webpack_require__.r(__webpack_exports__);
     post: Object
   },
   methods: {
-    getPostCover: function getPostCover(post) {
-      var _post$cover;
-
-      return (_post$cover = post.cover) !== null && _post$cover !== void 0 ? _post$cover : "https://www.logistec.com/wp-content/uploads/2017/12/placeholder.png";
-    },
+    // getPostCover(post) {
+    //   return (
+    //     post.cover ?? "https://www.logistec.com/wp-content/uploads/2017/12/placeholder.png"
+    //   );
+    // },
     formatDate: function formatDate(date) {
       return dayjs__WEBPACK_IMPORTED_MODULE_0___default()(date).format('DD/MM/YYYY HH:mm');
     }
@@ -3579,7 +3579,7 @@ var render = function () {
     _c("div", { staticClass: "card" }, [
       _c("img", {
         staticClass: "card-img-top",
-        attrs: { src: _vm.getPostCover(_vm.post), alt: "..." },
+        attrs: { src: _vm.post.cover, alt: "..." },
       }),
       _vm._v(" "),
       _c("div", { staticClass: "card-body" }, [

@@ -8,6 +8,7 @@ use App\Category;
 use App\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class PostController extends Controller
@@ -49,6 +50,7 @@ class PostController extends Controller
             "title" => "required|min:5",
             "content" => "required|min:10",
             "category_id" => "nullable",
+            "cover" => "nullable|max:500",
         ]);
 
         $post = new Post();
@@ -70,6 +72,10 @@ class PostController extends Controller
 
         $post->slug = $slug;
         $post->user_id = Auth::user()->id;
+
+        if (key_exists("cover", $data)) {
+            $post->cover = Storage::put("postCovers", $data["cover"]);
+        }
 
         $post->save();
 
@@ -121,7 +127,8 @@ class PostController extends Controller
             "title" => "required|min:5",
             "content" => "required|min:20",
             "category_id" => "nullable|exists:categories,id",
-            "tags" => "nullable|exists:tags,id"
+            "tags" => "nullable|exists:tags,id",
+            "cover" => "nullable|max:500",
         ]);
 
         $post = Post::findOrFail($id);
@@ -131,6 +138,17 @@ class PostController extends Controller
         }
 
         $post->update($data);
+
+        if (key_exists("cover", $data)) {
+            if ($post->cover) {
+                Storage::delete($post->cover);
+            }
+
+            $cover = Storage::put("postCovers", $data["cover"]);
+
+            $post->cover = $cover;
+            $post->save();
+        }
 
         if(key_exists("tags", $data)){
             $post->tags()->sync($data["tags"]);
@@ -149,6 +167,10 @@ class PostController extends Controller
     {
         $post = Post::findOrFail($id);
         $post->tags()->detach();
+
+        if ($post->cover) {
+            Storage::delete($post->cover);
+        }
 
         $post->delete();
 

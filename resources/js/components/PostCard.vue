@@ -1,7 +1,7 @@
 <template>
   <div class="col">
     <div class="card">
-      <img :src="getPostCover(post)" class="card-img-top" alt="..." />
+      <img :src="post.cover" class="card-img-top" alt="..." />
       <div class="card-body">
         <h5 class="card-title">{{ post.title }}</h5>
         <p class="card-text" v-html="post.content"></p>
@@ -25,11 +25,11 @@ export default {
     post: Object,
   },
   methods: {
-    getPostCover(post) {
-      return (
-        post.cover ?? "https://www.logistec.com/wp-content/uploads/2017/12/placeholder.png"
-      );
-    },
+    // getPostCover(post) {
+    //   return (
+    //     post.cover ?? "https://www.logistec.com/wp-content/uploads/2017/12/placeholder.png"
+    //   );
+    // },
     formatDate(date) {
       return dayjs(date).format('DD/MM/YYYY HH:mm')
     },

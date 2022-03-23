@@ -11,7 +11,7 @@
 
                 <div class="card-body">
 
-                    <form action="{{ route('admin.posts.update', $post->id) }}" method="post">
+                    <form action="{{ route('admin.posts.update', $post->id) }}" method="post" enctype="multipart/form-data">
                         @csrf
                         @method("patch")
 
@@ -21,6 +21,21 @@
                             <input type="text" name="title" class="form-control @error('title') is-invalid @enderror"
                                 placeholder="Inserisci il titolo" value="{{ old('title', $post->title) }}" required>
                             @error('title')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        {{-- Immagine --}}
+                        <div class="mb-3">
+                            <label>Immagine di copertina</label>
+                            <input 
+                                type="file"
+                                name="cover"
+                                class="form-control @error('cover') is-invalid @enderror"
+                                placeholder="Inserisci il titolo"
+                            >
+                            <span>{{ $post->cover }}</span>
+                            @error('cover')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
