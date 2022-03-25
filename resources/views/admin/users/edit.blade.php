@@ -11,7 +11,7 @@
 
                 <div class="card-body">
 
-                    <form action="{{ route('admin.users.update', $user->id) }}" method="post">
+                    <form action="{{ route('admin.users.update', $user->id) }}" method="post" enctype="multipart/form-data">
                         @csrf
                         @method("patch")
 
@@ -58,7 +58,6 @@
                         <div class="mb-3">
                             <label>Immagine profilo</label>
                             <input type="text" name="avatar" class="form-control @error('avatar') is-invalid @enderror"
-                                placeholder="Inserisci l'avatar"
                                 value="{{ old('avatar', $user->infoUser->avatar ?? null) }}">
                             <!--value="{{ old('avatar', $user->infoUser && $user->infoUser->avatar ? $user->infoUser->avatar : null) }}" required>-->
                             @error('avatar')

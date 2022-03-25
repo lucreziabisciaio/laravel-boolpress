@@ -1,20 +1,21 @@
 <template>
   <div>
-      <div>
-        <button class="btn btn-primary" @click="fetchPosts">refresh</button>
-      </div>
+    <div class="py-2">
+      <button class="btn btn-secondary" @click="fetchPosts"><i class="far fa-redo"></i></button>
+    </div>
 
-      <div class="row row-cols-1 row-cols-md-2 g-4">
-        <PostCard
-          v-for="post of posts"
-          :key="post.id"
-          :post="post"
-          >
-        </PostCard>
-      </div>
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+      <PostCard
+        v-for="post of posts"
+        :key="post.id"
+        :post="post"
+        >
+      </PostCard>
+    </div>
 
+    <div class="container d-flex justify-content-center pt-4 pb-2">
       <nav aria-label="Page navigation example">
-        <ul class="pagination">
+        <ul class="pagination container d-flex align-items-center">
           <li class="page-item">
             <a
               class="page-link"
@@ -22,7 +23,7 @@
               >Previous</a
             >
           </li>
-          <li class="page-item">
+          <li class="page-item px-2">
             {{ pagination.current_page }} su {{ pagination.last_page }}
           </li>
           <li class="page-item">
@@ -34,6 +35,8 @@
           </li>
         </ul>
       </nav>
+    </div>
+
   </div>
 </template>
 
@@ -72,5 +75,8 @@ export default {
 </script>
 
 <style>
-
+  .btn i {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 700;
+  }
 </style>

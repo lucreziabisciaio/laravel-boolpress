@@ -22,6 +22,10 @@
                                 <small class="fst-italic">{{ $post->created_at }} - {{ $post->user->name }} -
                                     {{ isset($post->category) ? $post->category->code : 'senza categoria' }}
                                 </small>
+
+                                @if ($post->trashed())
+                                    <span class="position-absolute top-0 start-0 translate-middle badge rounded-pill bg-danger">Cestino</span>
+                                @endif
                             </div>
 
                             <div class="ms-auto">
